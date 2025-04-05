@@ -1,10 +1,10 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
-import { LatestPost } from "~/app/_components/post";
 import { api, HydrateClient } from "~/trpc/server";
+import type { Post } from "@prisma/client";
 
 export default async function Home() {
-  // THis is how you would call a tRPC query in a server component
-  // const latestPost = await api.post.getLatest();
+  // Use the Post type from Prisma
+  const data: Post[] | undefined = await api.post.getAll();
 
   return (
     <HydrateClient>
@@ -16,6 +16,11 @@ export default async function Home() {
           <SignedIn>
             <UserButton />
           </SignedIn>
+        </div>
+        <div>
+          {data?.map((post) => (
+            <div key={post.id}>{post.content}</div>
+          ))}
         </div>
       </main>
     </HydrateClient>
