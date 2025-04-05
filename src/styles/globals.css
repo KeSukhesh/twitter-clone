@@ -3,4 +3,11 @@
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --background-color: #000000; /* Black background */
+  --text-color: #64748b; /* Slate color (Tailwind's slate-500) */
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
